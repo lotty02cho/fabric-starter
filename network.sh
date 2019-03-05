@@ -13,16 +13,16 @@ artifactsTemplatesFolder="artifact-templates"
 #: ${FABRIC_DOCKER_VERSION=docker-ce-18.03.0.ce}
 
 : ${DOMAIN:="example.com"}
-: ${IP_ORDERER:="127.0.0.1"}
+: ${IP_ORDERER:="127.27.62.126"}
 : ${ORG1:="a"}
 : ${ORG2:="b"}
 : ${ORG3:="c"}
 : ${PEER0:="peer0"}
 : ${PEER1:="peer1"}
 : ${MAIN_ORG:=${ORG1}}
-: ${IP1:="127.0.0.1"}
-: ${IP2:="127.0.0.1"}
-: ${IP3:="127.0.0.1"}
+: ${IP1:="172.27.42.141"}
+: ${IP2:="172.27.62.155"}
+: ${IP3:="172.27.62.126"}
 
 : ${FABRIC_VERSION:="1.4.0"}
 : ${THIRDPARTY_VERSION:="0.4.14"}
