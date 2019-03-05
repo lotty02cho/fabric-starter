@@ -1,0 +1,95 @@
+{
+  "blockchain": {
+    "type": "fabric",
+    "config": "benchmark/test/fabric-couch.json"
+  },
+  "test": {
+    "name": "test",
+    "description" : "Performance benchmark Couch",
+    "clients": {
+      "type": "local",
+      "number": 5
+    },
+    "rounds": [{
+        "label" : "put",
+        "txNumber" : [50, 50, 50],
+        "rateControl" : [
+          {
+            "type": "fixed-rate",
+            "opts": {"tps" : 20}
+          },
+          {
+            "type": "record-rate",
+            "opts": {
+              "rateController": {
+                "type": "fixed-rate",
+                "opts": {"tps" : 20}
+              },
+              "pathTemplate": "./reports/tx_records_client<C>_round<R>.txt",
+              "outputFormat": "TEXT",
+              "logEnd": true
+            }
+          },
+          {
+            "type": "linear-rate",
+            "opts": {
+              "startingTps": 5,
+              "finishingTps": 25
+            }
+          }
+        ],
+        "arguments": {  },
+        "callback" : "benchmark/test/common/put.js"
+      },{
+      "label" : "edit",
+      "txNumber" : [5],
+      "rateControl" : [
+        {
+          "type": "fixed-rate",
+          "opts": {"tps" : 1}
+        }
+      ],
+      "arguments": {  },
+      "callback" : "benchmark/test/common/edit.js"
+    },
+      {
+        "label" : "queryCouch",
+        "txNumber" : [5],
+        "rateControl" : [
+          {"type": "fixed-rate", "opts": {"tps" : 1}}
+        ],
+        "callback" : "benchmark/test/common/couchdb/queryCouch.js"
+      },
+      {
+        "label" : "queryAll",
+        "txNumber" : [50, 50],
+        "rateControl" : [
+          {"type": "fixed-rate", "opts": {"tps" : 5}},
+          {"type": "fixed-rate", "opts": {"tps" : 10}}
+        ],
+        "callback" : "benchmark/test/common/queryAll.js"
+      },
+      {
+        "label" : "filterCouch",
+        "txNumber" : [5],
+        "rateControl" : [
+          {"type": "fixed-rate", "opts": {"tps" : 1}}
+        ],
+        "callback" : "benchmark/test/common/couchdb/filterCouch.js"
+      }]
+  },
+  "monitor": {
+    "type": ["docker", "process"],
+    "docker":{
+      "name": ["all"]
+    },
+    "process": [
+      {
+        "command" : "node",
+        "arguments" : "local-client.js",
+        "multiOutput" : "avg"
+      }
+    ],
+    "interval": 1
+  }
+}
