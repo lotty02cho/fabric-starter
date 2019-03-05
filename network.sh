@@ -13,7 +13,7 @@ artifactsTemplatesFolder="artifact-templates"
 #: ${FABRIC_DOCKER_VERSION=docker-ce-18.03.0.ce}
 
 : ${DOMAIN:="example.com"}
-: ${IP_ORDERER:="172.27.62.126"}
+: ${IP_ORDERER:="172.27.62.142"}
 : ${ORG1:="a"}
 : ${ORG2:="b"}
 : ${ORG3:="c"}
