@@ -22,7 +22,7 @@ artifactsTemplatesFolder="artifact-templates"
 : ${MAIN_ORG:=${ORG1}}
 : ${IP1:="172.27.42.141"}
 : ${IP2:="172.27.42.155"}
-: ${IP3:="172.27.62.126"}
+: ${IP3:="172.27.62.121"}
 
 : ${FABRIC_VERSION:="1.4.0"}
 : ${THIRDPARTY_VERSION:="0.4.14"}
