@@ -21,7 +21,7 @@ artifactsTemplatesFolder="artifact-templates"
 : ${PEER1:="peer1"}
 : ${MAIN_ORG:=${ORG1}}
 : ${IP1:="172.27.42.141"}
-: ${IP2:="172.27.62.155"}
+: ${IP2:="172.27.42.155"}
 : ${IP3:="172.27.62.126"}
 
 : ${FABRIC_VERSION:="1.4.0"}
@@ -1363,6 +1363,13 @@ elif [ "${MODE}" == "generate" ]; then
 elif [ "${MODE}" == "generate-orderer" ]; then  # params: -M ORG (optional)
   clean
   removeArtifacts
+
+  file_base="$GENERATED_DOCKER_COMPOSE_FOLDER/base.yaml"
+  file_base_intercept="$GENERATED_DOCKER_COMPOSE_FOLDER/base-intercept.yaml"
+
+  setDockerVersions $file_base
+  setDockerVersions $file_base_intercept
+
   generateOrdererDockerCompose ${MAIN_ORG}
   downloadArtifactsOrderer ${MAIN_ORG}
   generateOrdererArtifacts
