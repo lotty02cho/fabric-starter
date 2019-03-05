@@ -1362,7 +1362,7 @@ elif [ "${MODE}" == "generate" ]; then
   #generateWait
 elif [ "${MODE}" == "generate-orderer" ]; then  # params: -M ORG (optional)
   clean
-  removeArtifacts
+  # removeArtifacts
 
   file_base="$GENERATED_DOCKER_COMPOSE_FOLDER/base.yaml"
   file_base_intercept="$GENERATED_DOCKER_COMPOSE_FOLDER/base-intercept.yaml"
